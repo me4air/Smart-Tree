@@ -7,24 +7,53 @@
 //
 
 import UIKit
+import LocalAuthentication
 
 class LoginViewController: UIViewController {
     @IBOutlet weak var userNameTextField: UITextField!
-    
     @IBOutlet weak var passTextField: UITextField!
     @IBOutlet weak var touchIdSwitch: UISwitch!
     @IBOutlet weak var loginButton: UIButton!
+    var userName = ""
+    var userPass = ""
     
     
     @IBAction func loginButtonPresed(_ sender: UIButton) {
+        if ((passTextField.text != "") && (userNameTextField.text != "")){
+            UserDefaults.standard.set(passTextField.text, forKey: "pass")
+            UserDefaults.standard.set(userNameTextField.text, forKey: "userName")
+            userName = UserDefaults.standard.string(forKey: "userName")!
+            userPass = UserDefaults.standard.string(forKey: "pass")!.utf8.md5.rawValue
+            if touchIdSwitch.isOn{
+                UserDefaults.standard.set(true, forKey: "touchIdEnabled")
+            } else {
+                UserDefaults.standard.set(false, forKey: "touchIdEnabled")
+            }
+            
+        } else {
+            print ("error")
+        }
+        
     }
     
     override func viewDidLoad() {
+        
+        if((UserDefaults.standard.string(forKey: "pass") != "") && (UserDefaults.standard.string(forKey: "userName") != "")){
+            userName = UserDefaults.standard.string(forKey: "userName")!
+            userPass = UserDefaults.standard.string(forKey: "pass")!.utf8.md5.rawValue
+            print(userPass)
+            }
+            if (UserDefaults.standard.bool(forKey: "touchIdEnabled" )){
+            userNameTextField.text=userName
+            authWithTouchId()
+            
+        } else if (UserDefaults.standard.bool(forKey: "touchIdEnabled") == false){
+            touchIdSwitch.setOn(false, animated: false)
+        }
         loginButton.layer.cornerRadius = loginButton.bounds.size.width * 0.1
         loginButton.clipsToBounds = true
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
@@ -32,7 +61,31 @@ class LoginViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    func showTouchIdAlertController(_ message: String) {
+        let alertController = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        present(alertController, animated: true, completion: nil)
+    }
 
+    func authWithTouchId() {
+        let context = LAContext()
+        var error: NSError?
+        if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) {
+            let reason = "Войти при помощи Touch ID"
+            context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason, reply:
+                {(succes, error) in
+                    if succes {
+                        self.showTouchIdAlertController("Touch ID Authentication Succeeded")
+                    }
+                    else {
+                        self.showTouchIdAlertController("Touch ID Authentication Failed")
+                    }
+                    } )
+        }
+        else {
+            showTouchIdAlertController("Touch ID not available")
+        }
+    }
     /*
     // MARK: - Navigation
 

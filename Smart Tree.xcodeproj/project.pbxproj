@@ -13,6 +13,7 @@
 		A069F17020A4BB3A00848D1B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A069F16F20A4BB3A00848D1B /* Assets.xcassets */; };
 		A069F17320A4BB3A00848D1B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A069F17120A4BB3A00848D1B /* LaunchScreen.storyboard */; };
 		A0F4EFE320A4E38400B199D1 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0F4EFE220A4E38400B199D1 /* LoginViewController.swift */; };
+		A0F4EFE520A4F50000B199D1 /* MD5Digest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0F4EFE420A4F50000B199D1 /* MD5Digest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		A069F17220A4BB3A00848D1B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A069F17420A4BB3A00848D1B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A0F4EFE220A4E38400B199D1 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		A0F4EFE420A4F50000B199D1 /* MD5Digest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MD5Digest.swift; path = ../../../MD5Digest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +60,7 @@
 			children = (
 				A0F4EFE220A4E38400B199D1 /* LoginViewController.swift */,
 				A069F16520A4BB3900848D1B /* AppDelegate.swift */,
+				A0F4EFE420A4F50000B199D1 /* MD5Digest.swift */,
 				A069F16920A4BB3900848D1B /* Main.storyboard */,
 				A069F16F20A4BB3A00848D1B /* Assets.xcassets */,
 				A069F17120A4BB3A00848D1B /* LaunchScreen.storyboard */,
@@ -138,6 +141,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A0F4EFE520A4F50000B199D1 /* MD5Digest.swift in Sources */,
 				A0F4EFE320A4E38400B199D1 /* LoginViewController.swift in Sources */,
 				A069F16E20A4BB3900848D1B /* Smart_Tree.xcdatamodeld in Sources */,
 				A069F16620A4BB3900848D1B /* AppDelegate.swift in Sources */,
