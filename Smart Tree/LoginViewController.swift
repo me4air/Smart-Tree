@@ -9,6 +9,10 @@
 import UIKit
 import LocalAuthentication
 
+struct Login: Codable {
+    let id: String
+}
+
 class LoginViewController: UIViewController {
     @IBOutlet weak var userNameTextField: UITextField!
     @IBOutlet weak var passTextField: UITextField!
@@ -16,6 +20,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var loginButton: UIButton!
     var userName = ""
     var userPass = ""
+    var userID = "-1"
     
     
     @IBAction func loginButtonPresed(_ sender: UIButton) {
@@ -29,7 +34,7 @@ class LoginViewController: UIViewController {
             } else {
                 UserDefaults.standard.set(false, forKey: "touchIdEnabled")
             }
-            
+            authToServer()
         } else {
             print ("error")
         }
@@ -71,11 +76,11 @@ class LoginViewController: UIViewController {
         let context = LAContext()
         var error: NSError?
         if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) {
-            let reason = "Войти при помощи Touch ID"
+            let reason = "Войти как пользователь "+userName+" при помощи Touch ID"
             context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason, reply:
                 {(succes, error) in
                     if succes {
-                        self.showTouchIdAlertController("Touch ID Authentication Succeeded")
+                        self.authToServer()
                     }
                     else {
                         self.showTouchIdAlertController("Touch ID Authentication Failed")
@@ -86,6 +91,42 @@ class LoginViewController: UIViewController {
             showTouchIdAlertController("Touch ID not available")
         }
     }
+    
+    func authToServer() {
+        
+        guard let url = URL(string: "http://me4air.fvds.ru/loginApi.php") else {return}
+
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        let postString = "name="+userName+"&pass="+userPass;
+        request.httpBody = postString.data(using: String.Encoding.utf8);
+        let session = URLSession.shared
+        session.dataTask(with: request) { (data, response, erroe) in
+            let queue = DispatchQueue.global(qos: .utility)
+            queue.async {
+                if let response = response {
+                    print(response)
+                }
+                guard let data = data else {return}
+                DispatchQueue.main.async {
+                    do{
+                        let loginData = try JSONDecoder().decode(Login.self, from: data)
+                        print(loginData)
+                        self.userID=loginData.id
+                        print(self.userID)
+                        if(self.userID != "-1"){
+                            self.performSegue(withIdentifier: "loginSegue", sender: self)
+                        }
+                    } catch {
+                        print(error)
+                    }
+                }
+               
+            }
+            }.resume()
+    }
+    
+    
     /*
     // MARK: - Navigation
 

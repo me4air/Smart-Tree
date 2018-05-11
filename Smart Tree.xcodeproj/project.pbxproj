@@ -14,6 +14,8 @@
 		A069F17320A4BB3A00848D1B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A069F17120A4BB3A00848D1B /* LaunchScreen.storyboard */; };
 		A0F4EFE320A4E38400B199D1 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0F4EFE220A4E38400B199D1 /* LoginViewController.swift */; };
 		A0F4EFE520A4F50000B199D1 /* MD5Digest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0F4EFE420A4F50000B199D1 /* MD5Digest.swift */; };
+		A0F4EFE720A6079D00B199D1 /* StationsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0F4EFE620A6079D00B199D1 /* StationsCollectionViewController.swift */; };
+		A0F4EFE920A60A6500B199D1 /* StationCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0F4EFE820A60A6500B199D1 /* StationCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,8 @@
 		A069F17420A4BB3A00848D1B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A0F4EFE220A4E38400B199D1 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		A0F4EFE420A4F50000B199D1 /* MD5Digest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MD5Digest.swift; path = ../../../MD5Digest.swift; sourceTree = "<group>"; };
+		A0F4EFE620A6079D00B199D1 /* StationsCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationsCollectionViewController.swift; sourceTree = "<group>"; };
+		A0F4EFE820A60A6500B199D1 /* StationCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,10 +62,12 @@
 		A069F16420A4BB3900848D1B /* Smart Tree */ = {
 			isa = PBXGroup;
 			children = (
+				A0F4EFE620A6079D00B199D1 /* StationsCollectionViewController.swift */,
 				A0F4EFE220A4E38400B199D1 /* LoginViewController.swift */,
 				A069F16520A4BB3900848D1B /* AppDelegate.swift */,
 				A0F4EFE420A4F50000B199D1 /* MD5Digest.swift */,
 				A069F16920A4BB3900848D1B /* Main.storyboard */,
+				A0F4EFE820A60A6500B199D1 /* StationCollectionViewCell.swift */,
 				A069F16F20A4BB3A00848D1B /* Assets.xcassets */,
 				A069F17120A4BB3A00848D1B /* LaunchScreen.storyboard */,
 				A069F17420A4BB3A00848D1B /* Info.plist */,
@@ -141,10 +147,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A0F4EFE720A6079D00B199D1 /* StationsCollectionViewController.swift in Sources */,
 				A0F4EFE520A4F50000B199D1 /* MD5Digest.swift in Sources */,
 				A0F4EFE320A4E38400B199D1 /* LoginViewController.swift in Sources */,
 				A069F16E20A4BB3900848D1B /* Smart_Tree.xcdatamodeld in Sources */,
 				A069F16620A4BB3900848D1B /* AppDelegate.swift in Sources */,
+				A0F4EFE920A60A6500B199D1 /* StationCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
