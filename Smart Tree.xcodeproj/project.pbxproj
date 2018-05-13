@@ -16,6 +16,8 @@
 		A0F4EFE520A4F50000B199D1 /* MD5Digest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0F4EFE420A4F50000B199D1 /* MD5Digest.swift */; };
 		A0F4EFE720A6079D00B199D1 /* StationsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0F4EFE620A6079D00B199D1 /* StationsCollectionViewController.swift */; };
 		A0F4EFE920A60A6500B199D1 /* StationCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0F4EFE820A60A6500B199D1 /* StationCollectionViewCell.swift */; };
+		A0F4EFEB20A71EC700B199D1 /* ScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0F4EFEA20A71EC700B199D1 /* ScanViewController.swift */; };
+		A0F4EFEF20A7385A00B199D1 /* DetailStationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0F4EFEE20A7385A00B199D1 /* DetailStationViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +32,8 @@
 		A0F4EFE420A4F50000B199D1 /* MD5Digest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MD5Digest.swift; path = ../../../MD5Digest.swift; sourceTree = "<group>"; };
 		A0F4EFE620A6079D00B199D1 /* StationsCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationsCollectionViewController.swift; sourceTree = "<group>"; };
 		A0F4EFE820A60A6500B199D1 /* StationCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationCollectionViewCell.swift; sourceTree = "<group>"; };
+		A0F4EFEA20A71EC700B199D1 /* ScanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanViewController.swift; sourceTree = "<group>"; };
+		A0F4EFEE20A7385A00B199D1 /* DetailStationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailStationViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +71,8 @@
 				A069F16520A4BB3900848D1B /* AppDelegate.swift */,
 				A0F4EFE420A4F50000B199D1 /* MD5Digest.swift */,
 				A069F16920A4BB3900848D1B /* Main.storyboard */,
+				A0F4EFEE20A7385A00B199D1 /* DetailStationViewController.swift */,
+				A0F4EFEA20A71EC700B199D1 /* ScanViewController.swift */,
 				A0F4EFE820A60A6500B199D1 /* StationCollectionViewCell.swift */,
 				A069F16F20A4BB3A00848D1B /* Assets.xcassets */,
 				A069F17120A4BB3A00848D1B /* LaunchScreen.storyboard */,
@@ -147,7 +153,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A0F4EFEF20A7385A00B199D1 /* DetailStationViewController.swift in Sources */,
 				A0F4EFE720A6079D00B199D1 /* StationsCollectionViewController.swift in Sources */,
+				A0F4EFEB20A71EC700B199D1 /* ScanViewController.swift in Sources */,
 				A0F4EFE520A4F50000B199D1 /* MD5Digest.swift in Sources */,
 				A0F4EFE320A4E38400B199D1 /* LoginViewController.swift in Sources */,
 				A069F16E20A4BB3900848D1B /* Smart_Tree.xcdatamodeld in Sources */,

@@ -10,11 +10,33 @@ import UIKit
 
 private let reuseIdentifier = "cell"
 
-class StationsCollectionViewController: UICollectionViewController {
+struct ArduinoData: Decodable {
+    var time: String?
+    var tem: String?
+    var hum: String?
+    var water: String?
+    var light: String?
+    var station_id: String?
+    var name: String?
+    var image: String?
+}
 
+
+class StationsCollectionViewController: UICollectionViewController {
+    
+    var userId = 1
+    var arduinoData: [ArduinoData] = []
+    @IBAction func unwindFromScaner(segue:UIStoryboardSegue) {
+        getDataFromServer()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        getDataFromServer()
+        Timer.scheduledTimer(withTimeInterval: 20.0, repeats: true){_ in
+            self.getDataFromServer()
+        }
+       // getDataFromServer()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -46,22 +68,124 @@ class StationsCollectionViewController: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return 1
+        return arduinoData.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! StationCollectionViewCell
-        cell.stationLabel.text = "Клубника"
-        cell.stationHum.text = "23"
-        cell.stationTemperature.text = "25"
+        cell.stationLabel.text = arduinoData[indexPath.row].name! + " #" + arduinoData[indexPath.row].station_id!
+        cell.stationHum.text = arduinoData[indexPath.row].hum! + " %"
+        if ((arduinoData[indexPath.row].tem?.count)!<4){
+            cell.stationTemperature.text = arduinoData[indexPath.row].tem! + "°C"} else {
+            cell.stationTemperature.text = String((arduinoData[indexPath.row].tem?.prefix(4))! + "°C")
+        }
         cell.stationImage.image = UIImage(named: "plant_placeholder")
-        cell.stationWater.text = "70"
-        cell.stationLight.text = "90"
+        if ((arduinoData[indexPath.row].water?.count)!<4){
+            cell.stationWater.text = arduinoData[indexPath.row].water! + "%"} else {
+            cell.stationWater.text = String((arduinoData[indexPath.row].water?.prefix(4))! + "%")
+        }
+        if ((arduinoData[indexPath.row].light?.count)!<4){
+            cell.stationLight.text = arduinoData[indexPath.row].light! + "%"} else {
+            cell.stationLight.text = String((arduinoData[indexPath.row].light?.prefix(4))! + "%")
+        }
+        cell.stationActivity.layer.cornerRadius = 15
+        cell.stationActivity.clipsToBounds = true
+        if(arduinoData[indexPath.row].time != nil){
+            if ( checkServerActive(date: arduinoData[indexPath.row].time!)){
+                cell.stationActivity.text = "ON"
+                cell.stationActivity.backgroundColor = UIColor(red: 126/255, green: 248/255, blue: 173/255, alpha: 1.0)
+            } else {
+                cell.stationActivity.text = "OFF"
+                cell.stationActivity.backgroundColor = UIColor(red: 248/255, green: 127/255, blue: 114/255, alpha: 1.0)
+            }
+        }
     
         // Configure the cell
+        
+        cell.contentView.layer.cornerRadius = 4.0
+        cell.contentView.layer.borderWidth = 1.0
+        cell.contentView.layer.borderColor = UIColor.clear.cgColor
+        cell.contentView.layer.masksToBounds = false
+        cell.layer.shadowColor = UIColor.gray.cgColor
+        cell.layer.shadowOffset = CGSize(width: 0, height: 1.0)
+        cell.layer.shadowRadius = 4.0
+        cell.layer.shadowOpacity = 0.7
+        cell.layer.masksToBounds = false
+        cell.layer.shadowPath = UIBezierPath(roundedRect: cell.bounds, cornerRadius: cell.contentView.layer.cornerRadius).cgPath
     
         return cell
     }
+    
+    func getDataFromServer() {
+        guard let url = URL(string: "http://me4air.fvds.ru/getdatafromserver.php") else {return}
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        let postString = "id="+String(userId);
+        request.httpBody = postString.data(using: String.Encoding.utf8);
+        let session = URLSession.shared
+        session.dataTask(with: request) { (data, response, erroe) in
+            let queue = DispatchQueue.global(qos: .utility)
+            queue.async {
+                if let response = response {
+                    print(response)
+                }
+                guard let data = data else {return}
+                DispatchQueue.main.async {
+                    do{
+                        let arduinoData = try JSONDecoder().decode(Array<ArduinoData>.self, from: data)
+                        self.arduinoData = arduinoData
+                        print(arduinoData)
+                        self.collectionView?.reloadData()
+                        
+                    } catch {
+                        print(error)
+                    }
+                }
+            }
+            }.resume()
+    }
+    
+    
+    
+   
+    
+    func checkServerActive(date: String) -> Bool{
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss" //Your date format
+        dateFormatter.timeZone = TimeZone(abbreviation: "GMT+3:00") //Current time zone
+        let date = dateFormatter.date(from: date) //according to date format your date string
+        if((date?.timeIntervalSinceNow)! * -1 / 60 < 2) {
+            return true
+            
+        }
+        else {return false
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showDetailStation" {
+            let dvc = segue.destination as! DetailStationViewController
+            if let indexPath = collectionView?.indexPathsForSelectedItems {
+                
+                if let cell = (collectionView?.cellForItem(at: indexPath[0]) as? StationCollectionViewCell){
+                    dvc.label = cell.stationLabel.text!
+                    dvc.activity = cell.stationActivity.text!
+                    dvc.hum = cell.stationHum.text!
+                    dvc.light = cell.stationLight.text!
+                    dvc.temp = cell.stationTemperature.text!
+                    dvc.water = cell.stationWater.text!
+                    dvc.image = cell.stationImage.image!
+                    dvc.date = arduinoData[indexPath[0].row].time!
+                }
+                
+            }
+            
+            
+            
+            
+        }
+    }
+
 
     // MARK: UICollectionViewDelegate
 

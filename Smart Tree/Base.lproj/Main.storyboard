@@ -96,7 +96,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="plant_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="QLH-kk-5Hx">
-                                            <rect key="frame" x="0.0" y="0.0" width="349" height="128"/>
+                                            <rect key="frame" x="12" y="11" width="325" height="117"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <color key="backgroundColor" red="0.96111180988979295" green="0.97062776840355325" blue="0.97062776840355325" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </imageView>
@@ -108,28 +108,52 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="27" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5uX-oz-3E8">
-                                            <rect key="frame" x="52" y="171" width="43" height="21"/>
+                                            <rect key="frame" x="51" y="174" width="60" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="34" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p3k-bQ-Hjh">
-                                            <rect key="frame" x="51" y="209" width="21" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="90" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ip9-Lg-KQQ">
-                                            <rect key="frame" x="152" y="171" width="21" height="21"/>
+                                            <rect key="frame" x="51" y="209" width="60" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="100" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HVS-14-NTq">
-                                            <rect key="frame" x="152" y="209" width="44" height="21"/>
+                                            <rect key="frame" x="152" y="209" width="76" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="OFF" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jlT-8H-wB0">
+                                            <rect key="frame" x="310" y="6" width="30" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" red="0.97062776840355325" green="0.4972514340576234" blue="0.44586918699935857" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="10"/>
+                                            <color key="textColor" red="0.27450980392156865" green="0.32941176470588235" blue="0.42745098039215684" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="temperarure" translatesAutoresizingMaskIntoConstraints="NO" id="l7I-rm-Ah3">
+                                            <rect key="frame" x="20" y="172" width="27" height="27"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="hum" translatesAutoresizingMaskIntoConstraints="NO" id="QZ3-YR-QPM">
+                                            <rect key="frame" x="20" y="203" width="27" height="27"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="light" translatesAutoresizingMaskIntoConstraints="NO" id="hgA-ny-x4n">
+                                            <rect key="frame" x="120" y="171" width="27" height="27"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="water" translatesAutoresizingMaskIntoConstraints="NO" id="jTg-uB-zNs">
+                                            <rect key="frame" x="119" y="203" width="27" height="27"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="90" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ip9-Lg-KQQ">
+                                            <rect key="frame" x="152" y="174" width="76" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
@@ -140,12 +164,14 @@
                                 <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <size key="customSize" width="349" height="250"/>
                                 <connections>
+                                    <outlet property="stationActivity" destination="jlT-8H-wB0" id="51f-Rb-q1S"/>
                                     <outlet property="stationHum" destination="p3k-bQ-Hjh" id="5kH-RG-Tfx"/>
                                     <outlet property="stationImage" destination="QLH-kk-5Hx" id="9Op-0W-DOM"/>
                                     <outlet property="stationLabel" destination="4km-Ca-k8H" id="Y5K-hm-nhr"/>
                                     <outlet property="stationLight" destination="Ip9-Lg-KQQ" id="1BT-eW-W6m"/>
                                     <outlet property="stationTemperature" destination="5uX-oz-3E8" id="lSy-uH-iuJ"/>
                                     <outlet property="stationWater" destination="HVS-14-NTq" id="aeF-Si-7eh"/>
+                                    <segue destination="ZAO-xt-Fdf" kind="show" identifier="showDetailStation" id="uhp-Si-g8d"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
@@ -155,12 +181,128 @@
                         </connections>
                     </collectionView>
                     <navigationItem key="navigationItem" title="Мои станции" largeTitleDisplayMode="always" id="cW5-2k-EE2">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="PCk-l6-ULX"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="PCk-l6-ULX">
+                            <connections>
+                                <segue destination="PCu-Ir-h6B" kind="show" id="TuC-at-JdW"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="collectionView" destination="gRW-Ul-TuT" id="KxN-5r-VxN"/>
+                    </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iQF-9s-fQl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1773.5999999999999" y="132.68365817091455"/>
+        </scene>
+        <!--Scan View Controller-->
+        <scene sceneID="nIb-DQ-BaO">
+            <objects>
+                <viewController id="PCu-Ir-h6B" customClass="ScanViewController" customModule="Smart_Tree" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ZBY-jQ-V63">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="EMn-l7-cfn"/>
+                    </view>
+                    <connections>
+                        <segue destination="Bh9-hY-lUY" kind="unwind" identifier="unwindFromScaner" unwindAction="unwindFromScanerWithSegue:" id="3UB-pt-0T4"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fk7-mw-llb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="Bh9-hY-lUY" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="2633" y="-233"/>
+        </scene>
+        <!--Detail Station View Controller-->
+        <scene sceneID="lsp-Zp-gBD">
+            <objects>
+                <viewController id="ZAO-xt-Fdf" customClass="DetailStationViewController" customModule="Smart_Tree" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="9vV-yt-CcY">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="plant_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="lCS-On-d22">
+                                <rect key="frame" x="0.0" y="110" width="375" height="149"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.9611118099" green="0.97062776839999998" blue="0.97062776839999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Плантация клубники #255" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bFY-Gz-j8I">
+                                <rect key="frame" x="33" y="76" width="309" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="27" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TsG-Hj-v4y">
+                                <rect key="frame" x="63" y="305" width="60" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="34" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JqC-vr-rsd">
+                                <rect key="frame" x="63" y="340" width="60" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="90" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xz7-03-SXl">
+                                <rect key="frame" x="164" y="305" width="76" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="100" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="efH-Wo-22Z">
+                                <rect key="frame" x="164" y="340" width="76" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="temperarure" translatesAutoresizingMaskIntoConstraints="NO" id="kZG-6o-XCu">
+                                <rect key="frame" x="32" y="303" width="27" height="27"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="hum" translatesAutoresizingMaskIntoConstraints="NO" id="bHo-ST-CkB">
+                                <rect key="frame" x="32" y="334" width="27" height="27"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="light" translatesAutoresizingMaskIntoConstraints="NO" id="eoo-C4-DS5">
+                                <rect key="frame" x="132" y="302" width="27" height="27"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="water" translatesAutoresizingMaskIntoConstraints="NO" id="zw6-BI-oUd">
+                                <rect key="frame" x="131" y="334" width="27" height="27"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="OFF" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bxz-lY-WWg">
+                                <rect key="frame" x="329" y="98" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.97062776839999998" green="0.4972514341" blue="0.445869187" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="10"/>
+                                <color key="textColor" red="0.27450980390000002" green="0.3294117647" blue="0.42745098040000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="8DZ-UA-8mF"/>
+                    </view>
+                    <connections>
+                        <outlet property="stationActivity" destination="bxz-lY-WWg" id="tfo-eV-azS"/>
+                        <outlet property="stationHum" destination="JqC-vr-rsd" id="oMD-BS-gf0"/>
+                        <outlet property="stationImage" destination="lCS-On-d22" id="0Cr-NF-zaB"/>
+                        <outlet property="stationLabel" destination="bFY-Gz-j8I" id="J9D-bx-ok1"/>
+                        <outlet property="stationLight" destination="xz7-03-SXl" id="djZ-J0-HuU"/>
+                        <outlet property="stationTemp" destination="TsG-Hj-v4y" id="6rl-Jk-tz4"/>
+                        <outlet property="stationWater" destination="efH-Wo-22Z" id="75b-Jn-axw"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nfx-t3-iXt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2632.8000000000002" y="510.49475262368821"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="pZp-5I-Wnw">
@@ -185,6 +327,10 @@
         </scene>
     </scenes>
     <resources>
+        <image name="hum" width="680" height="980"/>
+        <image name="light" width="512" height="512"/>
         <image name="plant_placeholder" width="200" height="200"/>
+        <image name="temperarure" width="200" height="200"/>
+        <image name="water" width="810" height="980"/>
     </resources>
 </document>

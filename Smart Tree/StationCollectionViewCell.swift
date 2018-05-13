@@ -15,6 +15,7 @@ class StationCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var stationTemperature: UILabel!
     
+    @IBOutlet weak var stationActivity: UILabel!
     @IBOutlet weak var stationHum: UILabel!
     @IBOutlet weak var stationLight: UILabel!
     @IBOutlet weak var stationWater: UILabel!
