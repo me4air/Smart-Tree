@@ -19,13 +19,40 @@ struct ArduinoData: Decodable {
     var station_id: String?
     var name: String?
     var image: String?
+    
+    init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        time = try values.decode(String.self, forKey: .time)
+        tem = try values.decode(String.self, forKey: .tem)
+        hum = try values.decode(String.self, forKey: .hum)
+        water = try values.decode(String.self, forKey: .water)
+        light = try values.decode(String.self, forKey: .light)
+        station_id = try values.decode(String.self, forKey: .station_id)
+        name = try values.decode(String.self, forKey: .name)
+        image = try values.decode(String.self, forKey: .image)
+    }
+    
+    enum CodingKeys: String, CodingKey {
+        case time
+        case tem
+        case hum
+        case water
+        case light
+        case station_id
+        case name
+        case image
+    }
+    
+    
 }
+
 
 
 class StationsCollectionViewController: UICollectionViewController {
     
     var userId = 1
     var arduinoData: [ArduinoData] = []
+    var imagesArray: [UIImage] = []
     @IBAction func unwindFromScaner(segue:UIStoryboardSegue) {
         getDataFromServer()
     }
@@ -73,6 +100,13 @@ class StationsCollectionViewController: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! StationCollectionViewCell
+        /*if arduinoData[indexPath.row].imageData != nil {
+            cell.stationImage.image = arduinoData[indexPath.row].imageData
+        } else {
+            cell.stationImage.image = #imageLiteral(resourceName: "plant_placeholder")
+        }*/
+        cell.stationImage.loadImageWithURLString(url: arduinoData[indexPath.row].image!)
+        cell.stationImage.clipsToBounds = true
         cell.stationLabel.text = arduinoData[indexPath.row].name! + " #" + arduinoData[indexPath.row].station_id!
         cell.stationHum.text = arduinoData[indexPath.row].hum! + " %"
         if ((arduinoData[indexPath.row].tem?.count)!<4){
@@ -101,7 +135,6 @@ class StationsCollectionViewController: UICollectionViewController {
         }
     
         // Configure the cell
-        
         cell.contentView.layer.cornerRadius = 4.0
         cell.contentView.layer.borderWidth = 1.0
         cell.contentView.layer.borderColor = UIColor.clear.cgColor
@@ -136,11 +169,11 @@ class StationsCollectionViewController: UICollectionViewController {
                         self.arduinoData = arduinoData
                         print(arduinoData)
                         self.collectionView?.reloadData()
-                        
                     } catch {
                         print(error)
                     }
                 }
+
             }
             }.resume()
     }
@@ -150,6 +183,7 @@ class StationsCollectionViewController: UICollectionViewController {
    
     
     func checkServerActive(date: String) -> Bool{
+        if (date != ""){
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss" //Your date format
         dateFormatter.timeZone = TimeZone(abbreviation: "GMT+3:00") //Current time zone
@@ -160,6 +194,9 @@ class StationsCollectionViewController: UICollectionViewController {
         }
         else {return false
         }
+        }
+        else {return false}
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -177,14 +214,12 @@ class StationsCollectionViewController: UICollectionViewController {
                     dvc.image = cell.stationImage.image!
                     dvc.date = arduinoData[indexPath[0].row].time!
                 }
-                
             }
-            
-            
-            
-            
         }
     }
+    
+   
+    
 
 
     // MARK: UICollectionViewDelegate
@@ -218,4 +253,40 @@ class StationsCollectionViewController: UICollectionViewController {
     }
     */
 
+}
+
+let imageCach = NSCache<AnyObject, AnyObject>()
+
+extension UIImageView {
+    
+    func loadImageWithURLString(url: String){
+        let url = URL(string: url)
+        let queue = DispatchQueue.global(qos: .utility)
+        queue.async {
+        if let imageFromaCash = imageCach.object(forKey: url! as AnyObject) as? UIImage {
+            DispatchQueue.main.async {
+                self.image = imageFromaCash
+                
+            }
+            return
+        }
+        
+        let session = URLSession.shared
+        
+        session.dataTask(with: url!) { (data, response, error) in
+            if error != nil {
+                print(error)
+                return
+            }
+            
+            let imageToCahe = UIImage(data: data!)
+            imageCach.setObject(imageToCahe!, forKey: url! as AnyObject)
+            DispatchQueue.main.async {
+                self.image = imageToCahe
+            }
+            }.resume()
+        }
+        
+    }
+    
 }

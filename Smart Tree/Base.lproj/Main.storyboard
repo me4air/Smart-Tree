@@ -95,7 +95,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="349" height="250"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="plant_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="QLH-kk-5Hx">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="plant_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="QLH-kk-5Hx">
                                             <rect key="frame" x="12" y="11" width="325" height="117"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <color key="backgroundColor" red="0.96111180988979295" green="0.97062776840355325" blue="0.97062776840355325" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -222,7 +222,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="plant_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="lCS-On-d22">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="plant_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="lCS-On-d22">
                                 <rect key="frame" x="0.0" y="110" width="375" height="149"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.9611118099" green="0.97062776839999998" blue="0.97062776839999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
