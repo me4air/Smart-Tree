@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A02C6D1D20A9AF130005C4F9 /* DeatailMultyCellViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02C6D1C20A9AF130005C4F9 /* DeatailMultyCellViewController.swift */; };
+		A02C6D1F20A9B3D30005C4F9 /* DatchikCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02C6D1E20A9B3D30005C4F9 /* DatchikCollectionViewCell.swift */; };
+		A02C6D2120A9B3F20005C4F9 /* ModCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02C6D2020A9B3F20005C4F9 /* ModCollectionViewCell.swift */; };
+		A02C6D2520A9DAD60005C4F9 /* HeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02C6D2420A9DAD60005C4F9 /* HeaderCollectionReusableView.swift */; };
 		A069F16620A4BB3900848D1B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A069F16520A4BB3900848D1B /* AppDelegate.swift */; };
 		A069F16B20A4BB3900848D1B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A069F16920A4BB3900848D1B /* Main.storyboard */; };
 		A069F16E20A4BB3900848D1B /* Smart_Tree.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A069F16C20A4BB3900848D1B /* Smart_Tree.xcdatamodeld */; };
@@ -21,6 +25,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A02C6D1C20A9AF130005C4F9 /* DeatailMultyCellViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeatailMultyCellViewController.swift; sourceTree = "<group>"; };
+		A02C6D1E20A9B3D30005C4F9 /* DatchikCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatchikCollectionViewCell.swift; sourceTree = "<group>"; };
+		A02C6D2020A9B3F20005C4F9 /* ModCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModCollectionViewCell.swift; sourceTree = "<group>"; };
+		A02C6D2420A9DAD60005C4F9 /* HeaderCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCollectionReusableView.swift; sourceTree = "<group>"; };
 		A069F16220A4BB3900848D1B /* Smart Tree.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Smart Tree.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A069F16520A4BB3900848D1B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A069F16A20A4BB3900848D1B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -71,6 +79,10 @@
 				A069F16520A4BB3900848D1B /* AppDelegate.swift */,
 				A0F4EFE420A4F50000B199D1 /* MD5Digest.swift */,
 				A069F16920A4BB3900848D1B /* Main.storyboard */,
+				A02C6D2420A9DAD60005C4F9 /* HeaderCollectionReusableView.swift */,
+				A02C6D2020A9B3F20005C4F9 /* ModCollectionViewCell.swift */,
+				A02C6D1E20A9B3D30005C4F9 /* DatchikCollectionViewCell.swift */,
+				A02C6D1C20A9AF130005C4F9 /* DeatailMultyCellViewController.swift */,
 				A0F4EFEE20A7385A00B199D1 /* DetailStationViewController.swift */,
 				A0F4EFEA20A71EC700B199D1 /* ScanViewController.swift */,
 				A0F4EFE820A60A6500B199D1 /* StationCollectionViewCell.swift */,
@@ -155,12 +167,16 @@
 			files = (
 				A0F4EFEF20A7385A00B199D1 /* DetailStationViewController.swift in Sources */,
 				A0F4EFE720A6079D00B199D1 /* StationsCollectionViewController.swift in Sources */,
+				A02C6D2120A9B3F20005C4F9 /* ModCollectionViewCell.swift in Sources */,
 				A0F4EFEB20A71EC700B199D1 /* ScanViewController.swift in Sources */,
+				A02C6D2520A9DAD60005C4F9 /* HeaderCollectionReusableView.swift in Sources */,
 				A0F4EFE520A4F50000B199D1 /* MD5Digest.swift in Sources */,
 				A0F4EFE320A4E38400B199D1 /* LoginViewController.swift in Sources */,
 				A069F16E20A4BB3900848D1B /* Smart_Tree.xcdatamodeld in Sources */,
 				A069F16620A4BB3900848D1B /* AppDelegate.swift in Sources */,
+				A02C6D1F20A9B3D30005C4F9 /* DatchikCollectionViewCell.swift in Sources */,
 				A0F4EFE920A60A6500B199D1 /* StationCollectionViewCell.swift in Sources */,
+				A02C6D1D20A9AF130005C4F9 /* DeatailMultyCellViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

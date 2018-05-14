@@ -20,7 +20,7 @@ struct ArduinoData: Decodable {
     var name: String?
     var image: String?
     
-    init(from decoder: Decoder) throws {
+  /*  init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         time = try values.decode(String.self, forKey: .time)
         tem = try values.decode(String.self, forKey: .tem)
@@ -43,7 +43,7 @@ struct ArduinoData: Decodable {
         case image
     }
     
-    
+    */
 }
 
 
@@ -60,7 +60,7 @@ class StationsCollectionViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         getDataFromServer()
-        Timer.scheduledTimer(withTimeInterval: 20.0, repeats: true){_ in
+        Timer.scheduledTimer(withTimeInterval: 15.0, repeats: true){_ in
             self.getDataFromServer()
         }
        // getDataFromServer()
@@ -105,6 +105,8 @@ class StationsCollectionViewController: UICollectionViewController {
         } else {
             cell.stationImage.image = #imageLiteral(resourceName: "plant_placeholder")
         }*/
+        cell.stationActivity.layer.borderColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        cell.stationActivity.layer.borderWidth = 2
         cell.stationImage.loadImageWithURLString(url: arduinoData[indexPath.row].image!)
         cell.stationImage.clipsToBounds = true
         cell.stationLabel.text = arduinoData[indexPath.row].name! + " #" + arduinoData[indexPath.row].station_id!
@@ -201,7 +203,7 @@ class StationsCollectionViewController: UICollectionViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showDetailStation" {
-            let dvc = segue.destination as! DetailStationViewController
+            let dvc = segue.destination as! DeatailMultyCellViewController
             if let indexPath = collectionView?.indexPathsForSelectedItems {
                 
                 if let cell = (collectionView?.cellForItem(at: indexPath[0]) as? StationCollectionViewCell){

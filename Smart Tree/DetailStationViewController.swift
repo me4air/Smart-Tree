@@ -30,9 +30,12 @@ class DetailStationViewController: UIViewController {
         stationImage.image = image
         stationWater.text = water
         stationHum.text = hum
-        stationLight.text = temp
+        stationLight.text = light
         stationLabel.text = label
         stationActivity.text = activity
+        stationTemp.text = temp
+        stationActivity.layer.borderWidth = 2.0
+        stationActivity.layer.borderColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
     }
     
     override func viewDidLoad() {
