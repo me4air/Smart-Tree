@@ -217,6 +217,7 @@
         <!--Detail Station View Controller-->
         <scene sceneID="lsp-Zp-gBD">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nfx-t3-iXt" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="ZAO-xt-Fdf" customClass="DetailStationViewController" customModule="Smart_Tree" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9vV-yt-CcY">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
@@ -300,7 +301,6 @@
                         <outlet property="stationWater" destination="efH-Wo-22Z" id="75b-Jn-axw"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="nfx-t3-iXt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3682" y="268"/>
         </scene>
@@ -364,16 +364,11 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="y2Y-nO-KsE">
-                                                    <rect key="frame" x="55" y="63" width="20" height="20"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                </activityIndicatorView>
                                             </subviews>
                                         </view>
                                         <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <size key="customSize" width="131" height="144"/>
                                         <connections>
-                                            <outlet property="modActivity" destination="y2Y-nO-KsE" id="Xur-vP-wns"/>
                                             <outlet property="modButton" destination="B5m-9s-ZSp" id="q4F-ER-92R"/>
                                             <outlet property="modLabel" destination="hvp-Un-nPb" id="VaJ-WZ-PFc"/>
                                         </connections>

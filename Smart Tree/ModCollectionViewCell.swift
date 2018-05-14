@@ -19,10 +19,8 @@ class ModCollectionViewCell: UICollectionViewCell {
     var status: String!
     @IBAction func modButtonPresed(_ sender: UIButton) {
         self.delegate?.modButtonPresed(at: indexPath, modId: mod_id, status: status)
-        modActivity.startAnimating()
     }
     
     @IBOutlet weak var modLabel: UILabel!
     @IBOutlet weak var modButton: UIButton!
-    @IBOutlet weak var modActivity: UIActivityIndicatorView!
 }

@@ -33,13 +33,34 @@ class DeatailMultyCellViewController: UIViewController, UICollectionViewDelegate
     var date = ""
     var stationId = ""
     var modsData: [ModsData] = []
-    
+    var userId = ""
     var parsingData : [StationDataForCollectionView] = []
     
     @IBOutlet weak var stationLabel: UILabel!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var stationActivity: UILabel!
+    var serverResponceTimer : Timer?
     
+    func startTimer () {
+        
+        if serverResponceTimer == nil {
+            serverResponceTimer =  Timer.scheduledTimer(
+                timeInterval: TimeInterval(5.0),
+                target      : self,
+                selector    : #selector(self.timerAction),
+                userInfo    : nil,
+                repeats     : true)
+        }
+    }
+    
+    @objc func timerAction() {
+        self.getDataFromServer()
+    }
+    
+    func stopTimer() {
+        serverResponceTimer?.invalidate()
+        serverResponceTimer = nil
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,13 +71,13 @@ class DeatailMultyCellViewController: UIViewController, UICollectionViewDelegate
         imageView.image = image
         stationActivity.text = activity
         if (temp != "ND"){
-            parsingData.append(StationDataForCollectionView(data: temp, image: "temperarure"))}
+            parsingData.append(StationDataForCollectionView(data: temp , image: "temperarure"))}
         if (hum != "ND %"){
-            parsingData.append(StationDataForCollectionView(data: hum, image: "hum"))}
+            parsingData.append(StationDataForCollectionView(data: hum , image: "hum"))}
         if (water != "ND%"){
             parsingData.append(StationDataForCollectionView(data: water, image: "water"))}
         if (light != "ND%"){
-            parsingData.append(StationDataForCollectionView(data: light, image: "light"))}
+            parsingData.append(StationDataForCollectionView(data: light , image: "light"))}
         if checkServerActive(date: date){
             stationActivity.text = "ON"
             stationActivity.backgroundColor = UIColor(red: 126/255, green: 248/255, blue: 173/255, alpha: 1.0)
@@ -68,10 +89,16 @@ class DeatailMultyCellViewController: UIViewController, UICollectionViewDelegate
         stationActivity.clipsToBounds = true
         stationActivity.layer.borderWidth = 2.0
         stationActivity.layer.borderColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        startTimer()
+        /* Timer.scheduledTimer(withTimeInterval: 7.0, repeats: true){_ in
+            self.getDataFromServer()
+        }*/
         // Do any additional setup after loading the view.
     }
     
-
+    override func viewWillDisappear(_ animated: Bool) {
+        stopTimer()
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -183,6 +210,60 @@ class DeatailMultyCellViewController: UIViewController, UICollectionViewDelegate
             }.resume()
     }
     
+    
+    func getDataFromServer() {
+        guard let url = URL(string: "http://me4air.fvds.ru/getdetaildata.php") else {return}
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        let postString = "station_id="+stationId;
+        request.httpBody = postString.data(using: String.Encoding.utf8);
+        let session = URLSession.shared
+        session.dataTask(with: request) { (data, response, erroe) in
+            let queue = DispatchQueue.global(qos: .utility)
+            queue.async {
+                if let response = response {
+                    print(response)
+                }
+                guard let data = data else {return}
+                DispatchQueue.main.async {
+                    do{
+                        let arduinoData = try JSONDecoder().decode(Array<ArduinoData>.self, from: data)
+                        self.parsingData = []
+                        if (arduinoData[0].tem != "ND"){
+                            let tem = arduinoData[0].tem! + "°C"
+                            self.parsingData.append(StationDataForCollectionView(data: tem , image: "temperarure"))}
+                        if (arduinoData[0].hum != "ND"){
+                            var hum = arduinoData[0].hum!
+                            if (hum.count > 4) {
+                                hum = String(hum.prefix(4))
+                            }
+                            hum = hum + " %"
+                            self.parsingData.append(StationDataForCollectionView(data: hum , image: "hum"))}
+                        if (arduinoData[0].water != "ND"){
+                            var water = arduinoData[0].water!
+                            if (water.count > 4) {
+                                water = String(water.prefix(4))
+                            }
+                            water = water + "%"
+                            self.parsingData.append(StationDataForCollectionView(data: water, image: "water"))}
+                        if (arduinoData[0].light != "ND"){
+                            var light = arduinoData[0].light!
+                            if (light.count > 4) {
+                                light = String(light.prefix(4))
+                            }
+                            light = light + "%"
+                            self.parsingData.append(StationDataForCollectionView(data: light , image: "light"))}
+                        print(arduinoData)
+                        self.date = arduinoData[0].time!
+                        self.collectionView?.reloadData()
+                    } catch {
+                        print(error)
+                    }
+                }
+                
+            }
+            }.resume()
+    }
     /*
     // MARK: - Navigation
 

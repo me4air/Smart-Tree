@@ -56,18 +56,46 @@ class StationsCollectionViewController: UICollectionViewController {
     @IBAction func unwindFromScaner(segue:UIStoryboardSegue) {
         getDataFromServer()
     }
+    var serverResponceTimer : Timer?
+    
+    func startTimer () {
+        
+        if serverResponceTimer == nil {
+            serverResponceTimer =  Timer.scheduledTimer(
+                timeInterval: TimeInterval(15.0),
+                target      : self,
+                selector    : #selector(self.timerAction),
+                userInfo    : nil,
+                repeats     : true)
+        }
+    }
+    
+    @objc func timerAction() {
+        self.getDataFromServer()
+    }
+    
+    func stopTimer() {
+        serverResponceTimer?.invalidate()
+        serverResponceTimer = nil
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         getDataFromServer()
-        Timer.scheduledTimer(withTimeInterval: 15.0, repeats: true){_ in
+       /* Timer.scheduledTimer(withTimeInterval: 15.0, repeats: true){_ in
             self.getDataFromServer()
-        }
+        }*/
+        startTimer()
        // getDataFromServer()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        stopTimer()
     }
 
     override func didReceiveMemoryWarning() {
@@ -216,6 +244,7 @@ class StationsCollectionViewController: UICollectionViewController {
                     dvc.image = cell.stationImage.image!
                     dvc.date = arduinoData[indexPath[0].row].time!
                     dvc.stationId = arduinoData[indexPath[0].row].station_id!
+                    dvc.userId = String(userId)
                 }
             }
         }
@@ -278,7 +307,7 @@ extension UIImageView {
         
         session.dataTask(with: url!) { (data, response, error) in
             if error != nil {
-                print(error)
+                print(error?.localizedDescription ?? "error")
                 return
             }
             
