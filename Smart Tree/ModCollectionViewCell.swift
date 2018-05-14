@@ -8,9 +8,17 @@
 
 import UIKit
 
-class ModCollectionViewCell: UICollectionViewCell {
+protocol CellButtonDelegate{
+    func modButtonPresed(at index:IndexPath, modId: String, status: String)
+}
 
+class ModCollectionViewCell: UICollectionViewCell {
+    var delegate:CellButtonDelegate!
+    var indexPath:IndexPath!
+    var mod_id: String!
+    var status: String!
     @IBAction func modButtonPresed(_ sender: UIButton) {
+        self.delegate?.modButtonPresed(at: indexPath, modId: mod_id, status: status)
         modActivity.startAnimating()
     }
     

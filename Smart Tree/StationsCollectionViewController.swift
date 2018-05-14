@@ -215,6 +215,7 @@ class StationsCollectionViewController: UICollectionViewController {
                     dvc.water = cell.stationWater.text!
                     dvc.image = cell.stationImage.image!
                     dvc.date = arduinoData[indexPath[0].row].time!
+                    dvc.stationId = arduinoData[indexPath[0].row].station_id!
                 }
             }
         }

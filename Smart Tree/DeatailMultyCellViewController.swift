@@ -10,9 +10,17 @@ struct StationDataForCollectionView {
     var image: String
 }
 
+struct ModsData: Decodable {
+    var mod_id: String?
+    var status: String?
+    var name: String?
+}
+
 import UIKit
 
-class DeatailMultyCellViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class DeatailMultyCellViewController: UIViewController, UICollectionViewDelegate, CellButtonDelegate, UICollectionViewDataSource {
+    
+    
     
     @IBOutlet weak var collectionView: UICollectionView!
     var image = UIImage()
@@ -23,6 +31,8 @@ class DeatailMultyCellViewController: UIViewController, UICollectionViewDelegate
     var label = ""
     var activity = ""
     var date = ""
+    var stationId = ""
+    var modsData: [ModsData] = []
     
     var parsingData : [StationDataForCollectionView] = []
     
@@ -33,15 +43,20 @@ class DeatailMultyCellViewController: UIViewController, UICollectionViewDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        getModsFromServer()
         collectionView.dataSource = self
         collectionView.delegate = self
         stationLabel.text = label
         imageView.image = image
         stationActivity.text = activity
-        parsingData.append(StationDataForCollectionView(data: temp, image: "temperarure"))
-        parsingData.append(StationDataForCollectionView(data: hum, image: "hum"))
-        parsingData.append(StationDataForCollectionView(data: water, image: "water"))
-        parsingData.append(StationDataForCollectionView(data: light, image: "light"))
+        if (temp != "ND"){
+            parsingData.append(StationDataForCollectionView(data: temp, image: "temperarure"))}
+        if (hum != "ND %"){
+            parsingData.append(StationDataForCollectionView(data: hum, image: "hum"))}
+        if (water != "ND%"){
+            parsingData.append(StationDataForCollectionView(data: water, image: "water"))}
+        if (light != "ND%"){
+            parsingData.append(StationDataForCollectionView(data: light, image: "light"))}
         if checkServerActive(date: date){
             stationActivity.text = "ON"
             stationActivity.backgroundColor = UIColor(red: 126/255, green: 248/255, blue: 173/255, alpha: 1.0)
@@ -68,8 +83,8 @@ class DeatailMultyCellViewController: UIViewController, UICollectionViewDelegate
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if section == 0{
-        return 4 }
-        return 2
+        return parsingData.count }
+        return modsData.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -79,13 +94,35 @@ class DeatailMultyCellViewController: UIViewController, UICollectionViewDelegate
             cell.modButton.clipsToBounds = true
             cell.layer.cornerRadius = 10
             cell.clipsToBounds = true
-            return cell }
+            cell.delegate = self
+            cell.indexPath = indexPath
+            cell.modLabel.text = modsData[indexPath.row].name
+            cell.mod_id = modsData[indexPath.row].mod_id
+            if (modsData[indexPath.row].status == "send_on" || modsData[indexPath.row].status == "get_on") {
+                cell.modButton.backgroundColor = UIColor(red: 224/255, green: 68/255, blue: 98/255, alpha: 1.0)
+                cell.modButton.setTitle("Выключить", for: .normal)
+                cell.status = "send_off"
+            } else {
+            if (modsData[indexPath.row].status == "send_off" || modsData[indexPath.row].status == "get_off") {
+                cell.modButton.backgroundColor = UIColor(red: 62/255, green: 224/255, blue: 114/255, alpha: 1.0)
+                cell.modButton.setTitle("Включить", for: .normal)
+                cell.status = "send_on"
+                } }
+            return cell
+        }
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "datchikCell", for: indexPath) as! DatchikCollectionViewCell
         cell.layer.cornerRadius = 10
         cell.clipsToBounds = true
         cell.datchikData.text = parsingData[indexPath.row].data
         cell.datchikImage.image = UIImage(named: parsingData[indexPath.row].image)
         return cell
+    }
+    
+    func modButtonPresed(at index: IndexPath, modId: String, status: String) {
+        print (index.row)
+        sendButtonPresed(status: status, mod: modId)
+        modsData[index.row].status = status
+        collectionView.reloadData()
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
@@ -98,6 +135,52 @@ class DeatailMultyCellViewController: UIViewController, UICollectionViewDelegate
             sectionHeder.headerLabel.text = "Управление станцией"
         }
         return sectionHeder
+    }
+    
+    func sendButtonPresed(status: String, mod: String) {
+        guard let url = URL(string: "http://me4air.fvds.ru/comandsapi.php") else {return}
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        let postString = "mod="+mod+"&station_id="+stationId+"&sender=IOS&status="+status;
+        request.httpBody = postString.data(using: String.Encoding.utf8);
+        let session = URLSession.shared
+        session.dataTask(with: request) { (data, response, erroe) in
+            let queue = DispatchQueue.global(qos: .utility)
+            queue.async {
+                if let response = response {
+                    print(response)
+                }
+            }
+            }.resume()
+    }
+    
+    func getModsFromServer() {
+        guard let url = URL(string: "http://me4air.fvds.ru/getmodsapi.php") else {return}
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        let postString = "station_id="+stationId;
+        request.httpBody = postString.data(using: String.Encoding.utf8);
+        let session = URLSession.shared
+        session.dataTask(with: request) { (data, response, erroe) in
+            let queue = DispatchQueue.global(qos: .utility)
+            queue.async {
+                if let response = response {
+                    print(response)
+                }
+                guard let data = data else {return}
+                DispatchQueue.main.async {
+                    do{
+                        let modsData = try JSONDecoder().decode(Array<ModsData>.self, from: data)
+                        self.modsData = modsData
+                        print(modsData)
+                        self.collectionView?.reloadData()
+                    } catch {
+                        print(error)
+                    }
+                }
+                
+            }
+            }.resume()
     }
     
     /*
