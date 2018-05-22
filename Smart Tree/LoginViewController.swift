@@ -113,9 +113,9 @@ class LoginViewController: UIViewController {
                         let loginData = try JSONDecoder().decode(Login.self, from: data)
                         print(loginData)
                         self.userID=loginData.id
-                        print(self.userID)
+                       // print(self.userID)
                         if(self.userID != "-1"){
-                            self.performSegue(withIdentifier: "loginSegue", sender: self)
+                            self.performSegue(withIdentifier: "loginSegue", sender: nil)
                         }
                     } catch {
                         print(error)
@@ -127,6 +127,14 @@ class LoginViewController: UIViewController {
     }
     
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "loginSegue" {
+            let dvc = segue.destination  as! UINavigationController
+            let tvc = dvc.topViewController as! StationsCollectionViewController
+                tvc.userId = Int(userID)!
+        }
+        
+    }
     /*
     // MARK: - Navigation
 

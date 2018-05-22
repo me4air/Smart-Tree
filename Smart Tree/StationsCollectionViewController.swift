@@ -50,9 +50,10 @@ struct ArduinoData: Decodable {
 
 class StationsCollectionViewController: UICollectionViewController {
     
-    var userId = 1
     var arduinoData: [ArduinoData] = []
     var imagesArray: [UIImage] = []
+    var userId = 0
+    
     @IBAction func unwindFromScaner(segue:UIStoryboardSegue) {
         getDataFromServer()
     }
@@ -79,14 +80,15 @@ class StationsCollectionViewController: UICollectionViewController {
         serverResponceTimer = nil
     }
     
-    
+    override func viewWillAppear(_ animated: Bool) {
+        getDataFromServer()
+        startTimer()
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        getDataFromServer()
-       /* Timer.scheduledTimer(withTimeInterval: 15.0, repeats: true){_ in
-            self.getDataFromServer()
-        }*/
-        startTimer()
+        print(userId)
+      
        // getDataFromServer()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -128,11 +130,6 @@ class StationsCollectionViewController: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! StationCollectionViewCell
-        /*if arduinoData[indexPath.row].imageData != nil {
-            cell.stationImage.image = arduinoData[indexPath.row].imageData
-        } else {
-            cell.stationImage.image = #imageLiteral(resourceName: "plant_placeholder")
-        }*/
         cell.stationActivity.layer.borderColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         cell.stationActivity.layer.borderWidth = 2
         cell.stationImage.loadImageWithURLString(url: arduinoData[indexPath.row].image!)
@@ -233,7 +230,6 @@ class StationsCollectionViewController: UICollectionViewController {
         if segue.identifier == "showDetailStation" {
             let dvc = segue.destination as! DeatailMultyCellViewController
             if let indexPath = collectionView?.indexPathsForSelectedItems {
-                
                 if let cell = (collectionView?.cellForItem(at: indexPath[0]) as? StationCollectionViewCell){
                     dvc.label = cell.stationLabel.text!
                     dvc.activity = cell.stationActivity.text!
